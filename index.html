@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app>
+  <head>
+	<meta charset="utf-8">
+    <script src="js/angular.min.js"></script>
+    <script src="js/todo.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/flat-ui.css">
+	<link rel="stylesheet" href="css/boostrap.css">
+  </head>
+  <body>
+    <div ng-controller="TodoCtrl">
+		<h2>Lista</h2>
+		  
+      <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  size="30"
+               placeholder="Añade una nueva tarea">
+        <input class="btn btn-primary" type="submit" value="Añadir">
+      </form>
+	  
+	  <form>
+		<input id="show_hide_info" class="btn btn-primary" value="Mostrar toda la lista" type="button" onclick="return showLista()">
+	  </form>
+	  
+	  <div id="contenedor" class="contenedor">	
+			<span>{{remaining()}} de {{todos.length}} tareas</span>
+			  [ <a href="" ng-click="borrar()">Borrar</a> ]
+			  <ul class="unstyled">
+				<li ng-repeat="todo in todos">
+				  <input type="checkbox" ng-model="todo.done">
+				  <span class="done-{{todo.done}}">{{todo.text}}</span>
+				</li>
+			  </ul>
+		</div>
+    </div>
+  </body>
+</html>
