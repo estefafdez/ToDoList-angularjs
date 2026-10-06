@@ -10,13 +10,15 @@ function showLista(){
 	return false;
 };
 
-function TodoCtrl($scope) {
+angular.module('todoApp', []).controller('TodoCtrl', ['$scope', function($scope) {
   
   $scope.todos = [
    ];
  
   $scope.addTodo = function() {
-    $scope.todos.push({text:$scope.todoText, done:false});
+    var text = ($scope.todoText || '').trim();
+    if (!text) return;
+    $scope.todos.push({text:text, done:false});
     $scope.todoText = '';
   };
  
@@ -35,4 +37,4 @@ function TodoCtrl($scope) {
       if (!todo.done) $scope.todos.push(todo);
     });
   };
-}
+}]);
